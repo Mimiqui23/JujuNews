@@ -27,7 +27,7 @@ fs.readdir('./Events/', (error, f) => {
         });
 });
 
-client.login('token');
+client.login('token(Pluxiom)');
 
 module.exports.run = (client, message, args) => {
     if (!args.join(' ')) { return message.channel.send('Vous n\'avez pas la spécifié un nom de role !'); }
