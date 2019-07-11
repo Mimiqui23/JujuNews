@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
 client.commands = new Discord.Collection();
+
 const fs = require('fs');
 
 var prefix = "$";
@@ -28,7 +30,71 @@ fs.readdir('./Events/', (error, f) => {
         });
 });
 
+function play(connection, message) {
+  
+    var server = servers[message.guild.id];
+    server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+    server.queue.shift();
+    server.dispatcher.on("end", function() { 
+      
+      if (server.queue[0]) play(connection, message);
+      else connection.disconnect();
+  
+    });
+  }
+
 client.login('token(Pluxiom)');
+
+if(message.content === "$ip"){
+        var embed2 = new Discord.RichEmbed()
+        .setColor('#592791')
+        .setTitle(`IP: ...`)
+        .setTitle(`PORT: ...`)
+        message.channel.send(embed2);
+        console.log(`L'utilisateur ${message.member.user.tag} a éxécuter la commande $ip
+
+if(message.content === prefix + "Pluxiom") {
+        var embed1 = new Discord.RichEmbed()
+        .setColor('#592791')
+        .setTitle(`Pluxiom Network`)
+        .setDescription(`Voici mes commandes disponibles :`)
+        .setThumbnail(message.author.avatarURL)
+        .addField(":tools: Modérateur", "Fais `$cmod` pour voir mes commandes de modération !")
+        .setFooter("Pluxiom 2019")
+        .setTimestamp()
+        message.channel.send(embed1);
+        console.log(`L'utilisateur ${message.member.user.tag} a éxécuter la commande $Pluxiom `);
+      };
+
+  client.on('message', async message => { 
+  
+      if(message.content === "Pluxiom"){
+          message.reply("Vous êtes sur le serveur Pluxiom :Pluxiom: ");
+          console.log(`L'utilisateur ${message.member.user.tag} a éxécuter la commande ‘Pluxiom’`);
+      }
+
+module.exports = (client) => {
+    client.user.setPresence({
+        game: {
+            name: "$help —-> Affiche l'aide !"
+        }
+    });
+};
+
+import discord
+import logging
+import os
+import asyncio
+import aiohttp
+import json
+from plugin_manager import PluginManager
+from database import Db
+from datadog import DDAgent
+from backdoor import make_console
+from schwifty import SchwiftyWebsocket
+from websockets.exceptions import ConnectionClosed
+
+log = logging.getLogger('discord')
 
 module.exports.run = (client, message, args) => {
     if (!args.join(' ')) { return message.channel.send('Vous n\'avez pas la spécifié un nom de role !'); }
@@ -227,26 +293,3 @@ module.exports = (client, message) => {
         if (!cmd) { return; }
             cmd.run(client, message, args);
 };
-
-module.exports = (client) => {
-    client.user.setPresence({
-        game: {
-            name: "$help —-> Affiche l'aide !"
-        }
-    });
-};
-
-import discord
-import logging
-import os
-import asyncio
-import aiohttp
-import json
-from plugin_manager import PluginManager
-from database import Db
-from datadog import DDAgent
-from backdoor import make_console
-from schwifty import SchwiftyWebsocket
-from websockets.exceptions import ConnectionClosed
-
-log = logging.getLogger('discord')
