@@ -214,7 +214,7 @@ module.exports.help = {
 };
 
 
-const prefix = '*';
+const prefix = '$';
 
 module.exports = (client, message) => {
     if (message.author.bot || message.channel.type === 'dm') { return; }
@@ -253,7 +253,7 @@ from websockets.exceptions import ConnectionClosed
 log = logging.getLogger('discord')
 
 
-class Mee6(discord.Client):
+class Pluxiom(discord.Client):
     """A modified discord.Client class
     This mod dispatches most events to the different plugins.
     """
