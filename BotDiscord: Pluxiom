@@ -51,7 +51,7 @@ if(message.content === "$ip"){
         .setTitle(`IP: ...`)
         .setTitle(`PORT: ...`)
         message.channel.send(embed2);
-        console.log(`L'utilisateur ${message.member.user.tag} a éxécuter la commande $ip
+        console.log(`L'utilisateur ${message.member.user.tag} a éxécuter la commande $ip`);
 
 if(message.content === prefix + "Pluxiom") {
         var embed1 = new Discord.RichEmbed()
